@@ -16,6 +16,14 @@
     "navigationBarTextStyle": "black",
     "backgroundColor": "#F8F1EA"
   },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于地图选点和搜索附近地点"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
   "tabBar": {
     "color": "#8B7468",
     "selectedColor": "#E94B43",
