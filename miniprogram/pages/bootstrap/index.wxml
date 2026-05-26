@@ -1,0 +1,24 @@
+<view class="safe-page bootstrap">
+  <view class="hero paper-card">
+    <view class="tape tape-left"></view>
+    <view class="tape tape-right"></view>
+    <view class="title">情侣地图 <text class="heart">♥</text></view>
+    <view class="subtitle">记录我们去过的每一个地方</view>
+    <view class="badge">旅行手账</view>
+    <image class="theme" src="/assets/theme/design-theme-reference.png" mode="aspectFill"></image>
+    <view class="copy">创建我们的专属空间，一起记录，慢慢回忆</view>
+  </view>
+
+  <view class="actions">
+    <button class="primary-button" loading="{{loading}}" disabled="{{loading}}" bindtap="onCreateSpace">创建空间</button>
+    <button class="secondary-button" disabled="{{loading}}" bindtap="toggleJoin">加入已有空间</button>
+  </view>
+
+  <view wx:if="{{showJoin}}" class="join paper-card">
+    <view class="section-title">输入邀请码</view>
+    <input class="input" placeholder="例如 LOVE24" maxlength="12" value="{{inviteCode}}" bindinput="onInviteInput" />
+    <button class="primary-button" loading="{{loading}}" disabled="{{loading}}" bindtap="onJoinSpace">加入我们的空间</button>
+  </view>
+
+  <view class="terms">创建即表示同意用户协议和隐私政策</view>
+</view>

@@ -1,0 +1,15 @@
+<view class="safe-page">
+  <view class="note-paper {{form.color}}">
+    <view class="tape"></view>
+    <textarea class="textarea" maxlength="160" value="{{form.text}}" bindinput="onTextInput" placeholder="写下这次最想记住的话"></textarea>
+    <image wx:if="{{form.photoFileId}}" class="photo" src="{{form.photoFileId}}" mode="aspectFill"></image>
+    <button class="secondary-button" bindtap="onUpload">贴一张照片</button>
+  </view>
+
+  <view class="colors">
+    <view wx:for="{{colors}}" wx:key="value" class="color {{item.value}} {{form.color === item.value ? 'active' : ''}}" data-value="{{item.value}}" bindtap="onColorTap">{{item.label}}</view>
+  </view>
+
+  <button class="primary-button" loading="{{saving}}" disabled="{{saving}}" bindtap="onSave">保存便利贴</button>
+  <button wx:if="{{form.noteId}}" class="secondary-button delete" bindtap="onDelete">删除便利贴</button>
+</view>

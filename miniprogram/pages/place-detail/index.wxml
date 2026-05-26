@@ -1,0 +1,41 @@
+<view class="detail">
+  <image wx:if="{{place.coverFileId}}" class="hero" src="{{place.coverFileId}}" mode="aspectFill"></image>
+  <view wx:else class="hero empty-hero">我们的回忆</view>
+
+  <view class="content paper-card">
+    <view class="title-row">
+      <view>
+        <view class="name">{{place.name}}</view>
+        <view class="rating">{{ratingText}} {{place.rating}}</view>
+      </view>
+      <view class="tag">{{categoryLabel}}</view>
+    </view>
+    <view class="line">地址：{{place.address}}</view>
+    <view class="line">日期：{{place.visitDate}} 去过</view>
+    <view class="story">{{place.content}}</view>
+
+    <view class="section">
+      <view class="section-head">
+        <view class="section-title">我们的照片</view>
+        <view class="muted">{{place.photoFileIds.length}} 张</view>
+      </view>
+      <photo-grid photos="{{place.photoFileIds}}"></photo-grid>
+    </view>
+
+    <view class="section">
+      <view class="section-head">
+        <view class="section-title">我们的便利贴</view>
+        <button class="small-btn" bindtap="onAddNote">＋新建</button>
+      </view>
+      <view wx:if="{{notes.length === 0}}" class="note-empty">记得这里的风，也记得你的笑。</view>
+      <view wx:else class="note-grid">
+        <sticky-note wx:for="{{notes}}" wx:key="_id" note="{{item}}" bind:tapnote="onTapNote"></sticky-note>
+      </view>
+    </view>
+
+    <view class="footer-actions">
+      <button class="secondary-button" bindtap="onEdit">编辑</button>
+      <button class="secondary-button" bindtap="onDelete">删除</button>
+    </view>
+  </view>
+</view>

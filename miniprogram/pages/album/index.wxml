@@ -1,0 +1,24 @@
+<view class="safe-page">
+  <view class="header">
+    <view class="section-title">全部相册</view>
+    <picker range="{{categories}}" range-key="label" bindchange="onCategoryPick">
+      <view class="filter">{{currentCategoryLabel}} ▾</view>
+    </picker>
+  </view>
+
+  <view wx:if="{{photos.length === 0}}" class="empty paper-card">
+    <view class="sticker-tape"></view>
+    <view class="empty-title">还没有照片</view>
+    <view class="empty-desc">去新增一个地点，上传今天最喜欢的照片</view>
+  </view>
+
+  <view wx:else class="album-grid">
+    <view wx:for="{{photos}}" wx:key="fileId" class="photo-card paper-card" data-place-id="{{item.placeId}}" bindtap="onTapPhoto">
+      <image class="photo" src="{{item.fileId}}" mode="aspectFill"></image>
+      <view class="info">
+        <view class="name">{{item.placeName}}</view>
+        <view class="date">{{item.visitDate}}</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,51 @@
+<view class="safe-page">
+  <view class="airmail paper-card">
+    <view class="photos">
+      <view class="upload" bindtap="onUploadPhotos">相机<br />添加照片<br />最多9张</view>
+      <image wx:for="{{form.photoFileIds}}" wx:key="*this" class="thumb" src="{{item}}" mode="aspectFill"></image>
+    </view>
+
+    <view class="field">
+      <view class="label">地点名称</view>
+      <input class="input" value="{{form.name}}" data-field="name" bindinput="onInput" placeholder="曾厝垵海边小酒馆" />
+    </view>
+
+    <view class="field">
+      <view class="label">地点类型</view>
+      <view class="chips">
+        <view wx:for="{{categories}}" wx:key="value" class="chip {{form.category === item.value ? 'active' : ''}}" data-value="{{item.value}}" bindtap="onCategoryTap">{{item.label}}</view>
+      </view>
+    </view>
+
+    <view class="field">
+      <view class="label">所在位置</view>
+      <view class="location-row">
+        <input class="input location" value="{{form.address}}" data-field="address" bindinput="onInput" placeholder="选择或输入地址" />
+        <view class="icon-btn" bindtap="onOpenPoi">搜</view>
+        <view class="icon-btn" bindtap="onOpenMapPicker">定</view>
+      </view>
+    </view>
+
+    <view class="field two">
+      <view>
+        <view class="label">去过日期</view>
+        <picker mode="date" value="{{form.visitDate}}" bindchange="onDateChange">
+          <view class="input picker">{{form.visitDate}}</view>
+        </picker>
+      </view>
+      <view>
+        <view class="label">评分</view>
+        <slider min="1" max="5" step="1" value="{{form.rating}}" activeColor="#E94B43" bindchange="onRatingChange" />
+        <view class="rating">{{ratingText}} {{form.rating}}</view>
+      </view>
+    </view>
+
+    <view class="field">
+      <view class="label">我们的小记</view>
+      <textarea class="textarea" maxlength="300" value="{{form.content}}" data-field="content" bindinput="onInput" placeholder="海风、音乐、微醺的浪漫晚餐"></textarea>
+      <view class="counter">{{form.content.length}}/300</view>
+    </view>
+
+    <button class="primary-button" loading="{{saving}}" disabled="{{saving}}" bindtap="onSave">保存</button>
+  </view>
+</view>

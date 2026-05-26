@@ -1,0 +1,35 @@
+.picker-page {
+  position: relative;
+  height: 100vh;
+  background: #f8f1ea;
+}
+
+.map {
+  width: 100%;
+  height: 100vh;
+}
+
+.panel {
+  position: absolute;
+  left: 24rpx;
+  right: 24rpx;
+  bottom: 34rpx;
+  padding: 26rpx;
+}
+
+.input {
+  width: 100%;
+  height: 78rpx;
+  margin: 20rpx 0 12rpx;
+  padding: 0 20rpx;
+  border-radius: 14rpx;
+  background: #f4eadc;
+  color: #4f3b31;
+  font-size: 28rpx;
+}
+
+.coord {
+  margin-bottom: 20rpx;
+  color: #a68b7d;
+  font-size: 22rpx;
+}

@@ -1,0 +1,16 @@
+<view class="picker-page">
+  <map
+    class="map"
+    latitude="{{latitude}}"
+    longitude="{{longitude}}"
+    markers="{{markers}}"
+    show-location
+    bindtap="onMapTap"
+  ></map>
+  <view class="panel paper-card">
+    <view class="section-title">已选择位置</view>
+    <input class="input" value="{{address}}" bindinput="onAddressInput" placeholder="给这个位置写一个地址或备注" />
+    <view class="coord">{{latitude}}, {{longitude}}</view>
+    <button class="primary-button" bindtap="onConfirm">确定位置</button>
+  </view>
+</view>

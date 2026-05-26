@@ -1,0 +1,28 @@
+<view class="safe-page">
+  <view class="searchbar">
+    <input class="search" value="{{keyword}}" bindinput="onKeywordInput" confirm-type="search" bindconfirm="onSearch" placeholder="搜索饭店、酒店、景点" />
+    <button class="cancel" bindtap="onSearch">搜索</button>
+  </view>
+
+  <view wx:if="{{!hasMapKey}}" class="notice paper-card">
+    <view class="section-title">还未配置腾讯位置服务 Key</view>
+    <view class="desc">可以先使用手动选点；配置 Key 后即可搜索真实地点。</view>
+    <button class="primary-button" bindtap="onManualPick">手动选点</button>
+  </view>
+
+  <view wx:if="{{pois.length === 0 && hasMapKey}}" class="notice paper-card">
+    <view class="section-title">搜索地点</view>
+    <view class="desc">输入名称后选择最接近的一项。</view>
+  </view>
+
+  <view class="list">
+    <view wx:for="{{pois}}" wx:key="id" class="poi paper-card" data-index="{{index}}" bindtap="onSelectPoi">
+      <view class="icon">{{item.categoryLabel}}</view>
+      <view class="main">
+        <view class="title">{{item.title}}</view>
+        <view class="address">{{item.address}}</view>
+      </view>
+      <view class="distance">{{item.distanceText}}</view>
+    </view>
+  </view>
+</view>

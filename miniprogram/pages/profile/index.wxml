@@ -1,0 +1,27 @@
+<view class="safe-page">
+  <view class="profile paper-card">
+    <image class="avatar" src="{{user.avatarUrl || '/assets/theme/design-theme-reference.png'}}" mode="aspectFill"></image>
+    <view class="profile-main">
+      <view class="name">{{user.nickName || '小熊和小鹿呀'}}</view>
+      <view class="meta">甜蜜值 {{placesCount}}</view>
+    </view>
+  </view>
+
+  <view class="space paper-card">
+    <view class="section-title">我们的空间</view>
+    <view class="space-name">{{space.name || '还没有空间'}}</view>
+    <view class="line">成员：{{memberCount}} / 2</view>
+    <view class="line">邀请码：{{space.inviteCode || '-'}}</view>
+    <view class="buttons">
+      <button class="secondary-button" bindtap="onCopyInvite">复制邀请码</button>
+      <button class="secondary-button" bindtap="onRefreshInvite">刷新邀请码</button>
+    </view>
+  </view>
+
+  <view class="menu paper-card">
+    <view class="menu-item">我们去过的地方 <text>{{placesCount}} 个地点</text></view>
+    <view class="menu-item">便利贴 <text>{{notesCount}} 张</text></view>
+    <view class="menu-item" bindtap="onExport">旅行手账 <text>导出</text></view>
+    <view class="menu-item">设置 <text>云环境与地图 Key</text></view>
+  </view>
+</view>

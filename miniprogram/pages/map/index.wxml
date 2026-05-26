@@ -1,0 +1,39 @@
+<view class="map-page">
+  <view class="topbar">
+    <view class="title">我们去过的地方</view>
+    <picker range="{{categories}}" range-key="label" bindchange="onCategoryPick">
+      <view class="filter">{{currentCategoryLabel}} ▾</view>
+    </picker>
+  </view>
+
+  <map
+    class="map"
+    latitude="{{centerLatitude}}"
+    longitude="{{centerLongitude}}"
+    markers="{{markers}}"
+    show-location
+    bindmarkertap="onMarkerTap"
+  ></map>
+
+  <view class="floating-add" bindtap="onAddPlace">＋</view>
+
+  <view class="bottom">
+    <place-card wx:if="{{selectedPlace}}" place="{{selectedPlace}}" bind:tapplace="onTapPlace"></place-card>
+    <view wx:else class="recent paper-card">
+      <view class="recent-head">
+        <view class="section-title">最近记录</view>
+        <view class="count">{{places.length}} 个地点</view>
+      </view>
+      <empty-state wx:if="{{places.length === 0}}" title="还没有地点" desc="点击右下角添加第一次约会记录"></empty-state>
+      <scroll-view wx:else scroll-x class="place-scroll">
+        <view class="scroll-row">
+          <view wx:for="{{places}}" wx:key="_id" class="mini-card" data-id="{{item._id}}" bindtap="onMiniTap">
+            <image wx:if="{{item.coverFileId}}" class="mini-img" src="{{item.coverFileId}}" mode="aspectFill"></image>
+            <view wx:else class="mini-img mini-empty">♥</view>
+            <view class="mini-name">{{item.name}}</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

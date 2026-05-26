@@ -1,0 +1,76 @@
+.note-paper {
+  position: relative;
+  min-height: 420rpx;
+  padding: 46rpx 28rpx 28rpx;
+  border-radius: 18rpx;
+  box-shadow: 0 14rpx 34rpx rgba(91, 62, 44, 0.14);
+}
+
+.yellow {
+  background: #ffe8a6;
+}
+
+.pink {
+  background: #f9c5cd;
+}
+
+.green {
+  background: #d7ead2;
+}
+
+.blue {
+  background: #c9e3f3;
+}
+
+.tape {
+  position: absolute;
+  top: -12rpx;
+  left: 50%;
+  width: 108rpx;
+  height: 34rpx;
+  margin-left: -54rpx;
+  border-radius: 4rpx;
+  background: rgba(255, 253, 249, 0.55);
+  transform: rotate(-4deg);
+}
+
+.textarea {
+  width: 100%;
+  min-height: 190rpx;
+  color: #5b4034;
+  font-size: 32rpx;
+  line-height: 1.55;
+  background: transparent;
+}
+
+.photo {
+  width: 100%;
+  height: 220rpx;
+  margin: 18rpx 0;
+  border-radius: 14rpx;
+}
+
+.colors {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14rpx;
+  margin: 26rpx 0;
+}
+
+.color {
+  height: 72rpx;
+  border: 4rpx solid transparent;
+  border-radius: 16rpx;
+  color: #5b4034;
+  font-size: 24rpx;
+  line-height: 64rpx;
+  text-align: center;
+}
+
+.color.active {
+  border-color: #e94b43;
+}
+
+.delete {
+  margin-top: 18rpx;
+}
