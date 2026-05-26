@@ -57,7 +57,8 @@ Page({
     const index = Number(event.currentTarget.dataset.index);
     const poi = this.data.pois[index];
     const channel = this.getOpenerEventChannel();
-    channel.emit('selectedPoi', poi);
+    if (!channel) return;
+    channel.emit?.('selectedPoi', poi);
     wx.navigateBack();
   },
   onManualPick() {

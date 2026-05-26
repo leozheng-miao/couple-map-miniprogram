@@ -5,7 +5,7 @@ Component({
   properties: {
     place: {
       type: Object,
-      value: null
+      value: {}
     }
   },
   data: {
@@ -26,7 +26,7 @@ Component({
   },
   methods: {
     onTap() {
-      const place = this.properties.place as Place;
+      const place = (this.properties as unknown as { place: Place }).place;
       if (!place?._id) return;
       this.triggerEvent('tapplace', { place });
     }

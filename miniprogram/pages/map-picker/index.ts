@@ -3,7 +3,7 @@ Page({
     latitude: 31.2304,
     longitude: 121.4737,
     address: '',
-    markers: [] as WechatMiniprogram.MapMarker[]
+    markers: [] as Record<string, unknown>[]
   },
   onLoad(query: Record<string, string>) {
     const latitude = Number(query.latitude) || 31.2304;
@@ -17,11 +17,11 @@ Page({
       });
     }
   },
-  setLocation(latitude: number, longitude: number, address = this.data.address) {
+  setLocation(latitude: number, longitude: number, address?: string) {
     this.setData({
       latitude,
       longitude,
-      address,
+      address: address ?? this.data.address,
       markers: [
         {
           id: 1,
@@ -49,7 +49,8 @@ Page({
   },
   onConfirm() {
     const channel = this.getOpenerEventChannel();
-    channel.emit('pickedLocation', {
+    if (!channel) return;
+    channel.emit?.('pickedLocation', {
       latitude: this.data.latitude,
       longitude: this.data.longitude,
       address: this.data.address || `${this.data.latitude.toFixed(6)}, ${this.data.longitude.toFixed(6)}`

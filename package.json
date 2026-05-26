@@ -1,0 +1,14 @@
+{
+  "name": "couple-map-miniprogram",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "check:cloud": "find cloudfunctions -name '*.js' -print -exec node --check {} \\;",
+    "check:json": "find . -name '*.json' -not -path './.git/*' -not -path './node_modules/*' -print -exec node -e \"JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8'))\" {} \\;"
+  },
+  "devDependencies": {
+    "miniprogram-api-typings": "^4.0.8",
+    "typescript": "^5.8.3"
+  }
+}

@@ -4,12 +4,12 @@ Component({
   properties: {
     note: {
       type: Object,
-      value: null
+      value: {}
     }
   },
   methods: {
     onTap() {
-      const note = this.properties.note as Note;
+      const note = (this.properties as unknown as { note: Note }).note;
       this.triggerEvent('tapnote', { note });
     }
   }

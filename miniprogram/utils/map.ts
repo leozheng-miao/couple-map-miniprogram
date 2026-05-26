@@ -12,7 +12,7 @@ export function markerIdFromPlace(place: Place): number {
   return Number.isFinite(numeric) ? numeric : Math.floor(Math.random() * 1000000);
 }
 
-export function toMarker(place: Place): WechatMiniprogram.MapMarker {
+export function toMarker(place: Place): Record<string, unknown> {
   return {
     id: markerIdFromPlace(place),
     latitude: place.latitude,

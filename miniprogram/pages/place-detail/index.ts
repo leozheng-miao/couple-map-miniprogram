@@ -5,7 +5,23 @@ import { categoryLabels, formatRating } from '../../utils/format';
 Page({
   data: {
     id: '',
-    place: { photoFileIds: [] } as Place,
+    place: {
+      _id: '',
+      spaceId: '',
+      name: '',
+      category: 'other',
+      address: '',
+      latitude: 0,
+      longitude: 0,
+      poiId: '',
+      visitDate: '',
+      rating: 0,
+      content: '',
+      coverFileId: '',
+      photoFileIds: [],
+      checkinCount: 0,
+      createdBy: ''
+    } as Place,
     notes: [] as Note[],
     categoryLabel: '',
     ratingText: ''

@@ -14,7 +14,7 @@ Page({
   data: {
     space: null as Space | null,
     places: [] as Place[],
-    markers: [] as WechatMiniprogram.MapMarker[],
+    markers: [] as Record<string, unknown>[],
     selectedPlace: null as Place | null,
     categories,
     categoryIndex: 0,
@@ -59,7 +59,7 @@ Page({
     });
     await this.loadPlaces();
   },
-  onMarkerTap(event: WechatMiniprogram.MapMarkerTap) {
+  onMarkerTap(event: WechatMiniprogram.MarkerTap) {
     const markerId = event.detail.markerId;
     const selectedPlace = this.data.places.find((place) => markerIdFromPlace(place) === markerId) || null;
     this.setData({ selectedPlace });
