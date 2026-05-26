@@ -1,0 +1,77 @@
+.place-card {
+  display: flex;
+  gap: 18rpx;
+  padding: 16rpx;
+  border: 1rpx solid #ead9cc;
+  border-radius: 22rpx;
+  background: #fffdf9;
+  box-shadow: 0 14rpx 32rpx rgba(91, 62, 44, 0.14);
+}
+
+.cover {
+  flex: none;
+  width: 154rpx;
+  height: 126rpx;
+  border-radius: 16rpx;
+  background: #f1dfca;
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 42rpx;
+  font-weight: 700;
+  background: linear-gradient(135deg, #efb07d, #e56a5d);
+}
+
+.body {
+  min-width: 0;
+  flex: 1;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.name {
+  flex: 1;
+  overflow: hidden;
+  color: #4f3b31;
+  font-size: 30rpx;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tag {
+  flex: none;
+  padding: 4rpx 12rpx;
+  border-radius: 999rpx;
+  background: #fff0e3;
+  color: #cf6c45;
+  font-size: 22rpx;
+}
+
+.rating {
+  margin-top: 8rpx;
+  color: #e94b43;
+  font-size: 24rpx;
+}
+
+.score {
+  color: #8b7468;
+}
+
+.address,
+.content {
+  overflow: hidden;
+  margin-top: 8rpx;
+  color: #8b7468;
+  font-size: 24rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

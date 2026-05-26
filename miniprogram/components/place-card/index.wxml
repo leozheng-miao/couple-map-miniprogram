@@ -1,0 +1,13 @@
+<view class="place-card" bindtap="onTap">
+  <image wx:if="{{place.coverFileId}}" class="cover" src="{{place.coverFileId}}" mode="aspectFill"></image>
+  <view wx:else class="cover placeholder">{{icon}}</view>
+  <view class="body">
+    <view class="row">
+      <view class="name">{{place.name}}</view>
+      <view class="tag">{{categoryLabel}}</view>
+    </view>
+    <view class="rating">{{ratingText}} <text class="score">{{place.rating}}</text></view>
+    <view class="address">{{place.address}}</view>
+    <view class="content">{{place.content}}</view>
+  </view>
+</view>

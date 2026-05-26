@@ -1,0 +1,11 @@
+<view class="photo-grid">
+  <image
+    wx:for="{{photos}}"
+    wx:key="*this"
+    class="photo"
+    src="{{item}}"
+    mode="aspectFill"
+    data-file="{{item}}"
+    bindtap="onPreview"
+  ></image>
+</view>

@@ -1,0 +1,72 @@
+page {
+  min-height: 100%;
+  background: #f8f1ea;
+  color: #4f3b31;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+}
+
+view,
+text,
+input,
+textarea,
+button {
+  box-sizing: border-box;
+}
+
+button {
+  margin: 0;
+}
+
+.safe-page {
+  min-height: 100vh;
+  padding: 24rpx;
+  background:
+    radial-gradient(circle at 10% 8%, rgba(255, 255, 255, 0.8), transparent 24%),
+    linear-gradient(180deg, #f8f1ea 0%, #fff8ef 100%);
+}
+
+.paper-card {
+  border: 1rpx solid #ead9cc;
+  border-radius: 22rpx;
+  background: rgba(255, 253, 249, 0.94);
+  box-shadow: 0 14rpx 34rpx rgba(91, 62, 44, 0.12);
+}
+
+.primary-button {
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 999rpx;
+  background: linear-gradient(135deg, #f0625d, #e9433d);
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 600;
+  box-shadow: 0 12rpx 22rpx rgba(233, 75, 67, 0.22);
+}
+
+.secondary-button {
+  height: 84rpx;
+  line-height: 84rpx;
+  border-radius: 999rpx;
+  background: #fff8ef;
+  color: #7d5f50;
+  border: 1rpx solid #ead9cc;
+  font-size: 28rpx;
+}
+
+.muted {
+  color: #a68b7d;
+}
+
+.section-title {
+  color: #4f3b31;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.sticker-tape {
+  width: 98rpx;
+  height: 34rpx;
+  background: rgba(213, 181, 137, 0.45);
+  transform: rotate(-8deg);
+  border-radius: 4rpx;
+}

@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/bootstrap/index",
+    "pages/map/index",
+    "pages/album/index",
+    "pages/profile/index",
+    "pages/place-form/index",
+    "pages/place-detail/index",
+    "pages/note-form/index",
+    "pages/map-picker/index",
+    "pages/poi-search/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "情侣地图",
+    "navigationBarBackgroundColor": "#F8F1EA",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F8F1EA"
+  },
+  "tabBar": {
+    "color": "#8B7468",
+    "selectedColor": "#E94B43",
+    "backgroundColor": "#FFFDF9",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/map/index",
+        "text": "地图"
+      },
+      {
+        "pagePath": "pages/album/index",
+        "text": "相册"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

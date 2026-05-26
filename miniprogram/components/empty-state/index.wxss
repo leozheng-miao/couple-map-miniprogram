@@ -1,0 +1,33 @@
+.empty {
+  position: relative;
+  padding: 54rpx 28rpx 42rpx;
+  border: 1rpx dashed #dec7ad;
+  border-radius: 22rpx;
+  background: rgba(255, 253, 249, 0.74);
+  text-align: center;
+}
+
+.tape {
+  position: absolute;
+  top: -14rpx;
+  left: 50%;
+  width: 108rpx;
+  height: 34rpx;
+  margin-left: -54rpx;
+  border-radius: 4rpx;
+  background: rgba(207, 171, 121, 0.45);
+  transform: rotate(-5deg);
+}
+
+.title {
+  color: #5b4034;
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.desc {
+  margin-top: 12rpx;
+  color: #9a8173;
+  font-size: 24rpx;
+  line-height: 1.5;
+}
