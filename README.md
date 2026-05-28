@@ -42,7 +42,7 @@ docs/assets/       设计主题参考图
 
 每个业务函数目录下都有独立 `package.json`。部署前在微信开发者工具中对每个函数执行安装依赖并上传部署。
 
-`cloudfunctions/common` 是共享依赖包，被各业务云函数通过 `file:../common` 引用。
+`cloudfunctions/common` 是共享源码模板；业务云函数目录内已各自带有 `common/` 副本，部署时直接上传对应业务函数目录即可。
 
 ## 发布前阅读
 

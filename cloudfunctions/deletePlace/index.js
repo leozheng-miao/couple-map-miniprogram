@@ -1,7 +1,7 @@
 const cloud = require('wx-server-sdk');
-const { ok, fail } = require('couple-map-cloud-common/response');
-const { requirePlaceAccess } = require('couple-map-cloud-common/auth');
-const { requireString } = require('couple-map-cloud-common/validators');
+const { ok, fail } = require('./common/response');
+const { requirePlaceAccess } = require('./common/auth');
+const { requireString } = require('./common/validators');
 
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
 

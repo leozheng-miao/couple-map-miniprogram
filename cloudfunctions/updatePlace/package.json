@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "wx-server-sdk": "latest",
-    "couple-map-cloud-common": "file:../common"
+    "wx-server-sdk": "latest"
   }
 }

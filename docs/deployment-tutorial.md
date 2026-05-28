@@ -108,7 +108,9 @@ export const TENCENT_MAP_KEY = '';
 4. 部署完成后，在云开发控制台「云函数」确认函数列表里都有对应函数。
 5. 打开云函数日志，后续测试失败时优先看日志。
 
-注意：本项目的业务函数依赖 `cloudfunctions/common` 共享包。如果某个函数部署时报 `couple-map-cloud-common` 找不到，请在该函数目录本地执行：
+注意：业务云函数目录内已经包含 `common/` 共享代码副本。如果你修改了 `cloudfunctions/common` 源模板，需要同步到各业务函数目录后再部署。
+
+如果某个函数部署时报 `wx-server-sdk` 找不到，请在该函数目录本地执行：
 
 ```bash
 npm install
@@ -288,4 +290,3 @@ function not exists
 - 确认腾讯位置服务 Key 已启用 WebService API。
 - 确认云函数 `searchPoi` 已部署。
 - 查看 `searchPoi` 云函数日志。
-
