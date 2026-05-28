@@ -1,4 +1,5 @@
 const cloud = require('wx-server-sdk');
+const { getOpenId } = require('./common/context');
 const { ok, fail } = require('./common/response');
 const { requireSpaceMember } = require('./common/auth');
 const { optionalString, requireCategory, requireString } = require('./common/validators');
@@ -8,7 +9,7 @@ cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
 exports.main = async (event) => {
   const db = cloud.database();
   const _ = db.command;
-  const { OPENID } = cloud.getWXContext();
+  const OPENID = getOpenId(event);
 
   try {
     const spaceId = requireString(event.spaceId, '空间ID');

@@ -1,4 +1,5 @@
 const cloud = require('wx-server-sdk');
+const { getOpenId } = require('./common/context');
 const { ok, fail } = require('./common/response');
 const { requireSpaceMember } = require('./common/auth');
 const {
@@ -13,7 +14,7 @@ cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
 
 exports.main = async (event) => {
   const db = cloud.database();
-  const { OPENID } = cloud.getWXContext();
+  const OPENID = getOpenId(event);
   const now = new Date();
 
   try {

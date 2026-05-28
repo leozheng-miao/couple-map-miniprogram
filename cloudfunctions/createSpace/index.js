@@ -1,6 +1,7 @@
 const cloud = require('wx-server-sdk');
+const { getOpenId } = require('./common/context');
 const { ok, fail } = require('./common/response');
-const { requireUser } = require('./common/auth');
+const { getUser } = require('./common/auth');
 const { optionalString } = require('./common/validators');
 
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
@@ -11,11 +12,28 @@ function createInviteCode() {
 
 exports.main = async (event) => {
   const db = cloud.database();
-  const { OPENID } = cloud.getWXContext();
+  const OPENID = getOpenId(event);
   const now = new Date();
 
   try {
-    const user = await requireUser(OPENID);
+    let user = await getUser(OPENID);
+    if (!user) {
+      const addUserResult = await db.collection('users').add({
+        data: {
+          _openid: OPENID,
+          nickName: '',
+          avatarUrl: '',
+          currentSpaceId: '',
+          createdAt: now,
+          updatedAt: now
+        }
+      });
+      user = {
+        _id: addUserResult._id,
+        _openid: OPENID,
+        currentSpaceId: ''
+      };
+    }
     if (user.currentSpaceId) {
       throw new Error('你已经加入情侣空间');
     }

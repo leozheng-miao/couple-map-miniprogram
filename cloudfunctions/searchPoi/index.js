@@ -1,4 +1,5 @@
 const cloud = require('wx-server-sdk');
+const { getOpenId } = require('./common/context');
 const https = require('https');
 const { ok, fail } = require('./common/response');
 const { optionalString, requireNumber, requireString } = require('./common/validators');
