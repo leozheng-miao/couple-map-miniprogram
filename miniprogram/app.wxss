@@ -33,8 +33,12 @@ button {
 }
 
 .primary-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 88rpx;
-  line-height: 88rpx;
+  padding: 0;
+  line-height: 1.2;
   border-radius: 999rpx;
   background: linear-gradient(135deg, #f0625d, #e9433d);
   color: #fff;
@@ -44,8 +48,12 @@ button {
 }
 
 .secondary-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 84rpx;
-  line-height: 84rpx;
+  padding: 0;
+  line-height: 1.2;
   border-radius: 999rpx;
   background: #fff8ef;
   color: #7d5f50;
