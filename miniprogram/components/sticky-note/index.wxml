@@ -1,5 +1,5 @@
 <view class="note {{note.color}}" bindtap="onTap">
   <view class="tape"></view>
-  <image wx:if="{{note.photoFileId}}" class="photo" src="{{note.photoFileId}}" mode="aspectFill"></image>
+  <image wx:if="{{note.photoUrl || note.photoFileId}}" class="photo" src="{{note.photoUrl || note.photoFileId}}" mode="aspectFill"></image>
   <view wx:if="{{note.text}}" class="text">{{note.text}}</view>
 </view>

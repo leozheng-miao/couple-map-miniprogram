@@ -2,6 +2,7 @@ const cloud = require('wx-server-sdk');
 const { getOpenId } = require('./common/context');
 const { ok, fail } = require('./common/response');
 const { requireSpaceMember } = require('./common/auth');
+const { getTempFileUrlMap, withPlaceImageUrls } = require('./common/media');
 const { optionalString, requireCategory, requireString } = require('./common/validators');
 
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
@@ -22,7 +23,13 @@ exports.main = async (event) => {
     }
 
     const result = await db.collection('places').where(where).orderBy('visitDate', 'desc').get();
-    return ok({ places: result.data });
+    const fileIds = result.data.flatMap((place) => {
+      const photoFileIds = Array.isArray(place.photoFileIds) ? place.photoFileIds : [];
+      return [place.coverFileId, ...photoFileIds];
+    });
+    const urlMap = await getTempFileUrlMap(fileIds);
+
+    return ok({ places: result.data.map((place) => withPlaceImageUrls(place, urlMap)) });
   } catch (error) {
     return fail(error.message || '获取地点失败', 'LIST_PLACES_FAILED');
   }

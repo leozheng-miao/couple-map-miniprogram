@@ -31,7 +31,9 @@ export interface Place {
   rating: number;
   content: string;
   coverFileId: string;
+  coverUrl?: string;
   photoFileIds: string[];
+  photoUrls?: string[];
   checkinCount: number;
   createdBy: string;
 }
@@ -43,11 +45,13 @@ export interface Note {
   text: string;
   color: NoteColor;
   photoFileId: string;
+  photoUrl?: string;
   createdBy: string;
 }
 
 export interface AlbumPhoto {
   fileId: string;
+  url?: string;
   placeId: string;
   placeName: string;
   category: PlaceCategory;

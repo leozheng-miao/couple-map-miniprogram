@@ -4,7 +4,6 @@
     latitude="{{latitude}}"
     longitude="{{longitude}}"
     markers="{{markers}}"
-    show-location
     bindtap="onMapTap"
   ></map>
   <view class="panel paper-card">

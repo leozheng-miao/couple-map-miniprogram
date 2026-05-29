@@ -134,20 +134,9 @@ export const TENCENT_MAP_KEY = '你的腾讯位置服务Key';
 
 ## 9. 微信权限与隐私配置
 
-本项目已在 `miniprogram/app.json` 声明：
+本项目不申请 `getLocation`、`onLocationChange`、`startLocationUpdate`。地图首页只展示已记录地点，新增地点通过 POI 搜索或手动点选地图坐标完成，不读取用户实时位置。
 
-```json
-"permission": {
-  "scope.userLocation": {
-    "desc": "你的位置信息将用于地图选点和搜索附近地点"
-  }
-},
-"requiredPrivateInfos": [
-  "getLocation"
-]
-```
-
-在微信公众平台提审前，还需要按后台要求填写用户隐私保护指引，说明会使用位置、相册/图片上传能力。
+在微信公众平台提审前，用户隐私保护指引只需要按实际能力说明图片选择、图片上传、云存储等用途；不要填写定位类接口使用场景。
 
 ## 10. 开发者工具测试流程
 
@@ -274,13 +263,15 @@ function not exists
 - 确认云函数部署成功。
 - 查看云函数日志里的具体错误。
 
-### getLocation 报 requiredPrivateInfos
+### 定位接口审核不通过
 
 处理：
 
 - 确认使用的是最新代码。
-- 确认 `miniprogram/app.json` 有 `requiredPrivateInfos: ["getLocation"]`。
-- 确认微信公众平台位置接口权限已按要求配置。
+- 确认 `miniprogram/app.json` 不包含 `permission.scope.userLocation`。
+- 确认 `miniprogram/app.json` 不包含 `requiredPrivateInfos`。
+- 确认代码中没有 `wx.getLocation`、`wx.onLocationChange`、`wx.startLocationUpdate`。
+- 在微信公众平台接口申请中移除 `getLocation`、`onLocationChange`、`startLocationUpdate`。
 
 ### POI 搜索失败
 

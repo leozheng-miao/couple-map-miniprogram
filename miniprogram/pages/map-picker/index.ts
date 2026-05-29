@@ -10,12 +10,6 @@ Page({
     const longitude = Number(query.longitude) || 121.4737;
     const address = decodeURIComponent(query.address || '');
     this.setLocation(latitude, longitude, address);
-    if (!query.latitude || !query.longitude) {
-      wx.getLocation({
-        type: 'gcj02',
-        success: (result) => this.setLocation(result.latitude, result.longitude, address)
-      });
-    }
   },
   setLocation(latitude: number, longitude: number, address?: string) {
     this.setData({

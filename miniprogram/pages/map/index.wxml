@@ -11,7 +11,6 @@
     latitude="{{centerLatitude}}"
     longitude="{{centerLongitude}}"
     markers="{{markers}}"
-    show-location
     bindmarkertap="onMarkerTap"
   ></map>
 
@@ -28,7 +27,7 @@
       <scroll-view wx:else scroll-x class="place-scroll">
         <view class="scroll-row">
           <view wx:for="{{places}}" wx:key="_id" class="mini-card" data-id="{{item._id}}" bindtap="onMiniTap">
-            <image wx:if="{{item.coverFileId}}" class="mini-img" src="{{item.coverFileId}}" mode="aspectFill"></image>
+            <image wx:if="{{item.coverUrl || item.coverFileId}}" class="mini-img" src="{{item.coverUrl || item.coverFileId}}" mode="aspectFill"></image>
             <view wx:else class="mini-img mini-empty">♥</view>
             <view class="mini-name">{{item.name}}</view>
           </view>

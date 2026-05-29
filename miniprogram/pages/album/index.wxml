@@ -14,7 +14,7 @@
 
   <view wx:else class="album-grid">
     <view wx:for="{{photos}}" wx:key="fileId" class="photo-card paper-card" data-place-id="{{item.placeId}}" bindtap="onTapPhoto">
-      <image class="photo" src="{{item.fileId}}" mode="aspectFill"></image>
+      <image class="photo" src="{{item.url || item.fileId}}" mode="aspectFill"></image>
       <view class="info">
         <view class="name">{{item.placeName}}</view>
         <view class="date">{{item.visitDate}}</view>

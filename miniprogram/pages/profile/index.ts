@@ -40,7 +40,7 @@ Page({
       const result = await callFunction<{ inviteCode: string; inviteExpireAt: string }>('refreshInviteCode', {
         spaceId: this.data.space._id
       });
-      this.setData({ space: { ...this.data.space, ...result } });
+      this.setData({ space: Object.assign({}, this.data.space, result) });
       wx.showToast({ title: '已刷新', icon: 'success' });
     } catch (error) {
       showError(error);

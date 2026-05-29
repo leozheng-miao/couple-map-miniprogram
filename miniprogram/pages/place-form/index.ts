@@ -25,7 +25,8 @@ function emptyForm(spaceId = '') {
     rating: 5,
     content: '',
     coverFileId: '',
-    photoFileIds: [] as string[]
+    photoFileIds: [] as string[],
+    photoUrls: [] as string[]
   };
 }
 
@@ -44,7 +45,7 @@ Page({
       await this.loadPlace(query.id);
     } else if (!spaceId) {
       const { space } = await callFunction<{ space: Space | null }>('getCurrentSpace');
-      if (space) this.setData({ form: { ...this.data.form, spaceId: space._id } });
+      if (space) this.setData({ form: Object.assign({}, this.data.form, { spaceId: space._id }) });
     }
   },
   async loadPlace(placeId: string) {
@@ -64,7 +65,8 @@ Page({
           rating: place.rating,
           content: place.content,
           coverFileId: place.coverFileId,
-          photoFileIds: place.photoFileIds || []
+          photoFileIds: place.photoFileIds || [],
+          photoUrls: place.photoUrls || place.photoFileIds || []
         },
         ratingText: formatRating(place.rating)
       });
@@ -74,18 +76,18 @@ Page({
   },
   onInput(event: WechatMiniprogram.Input) {
     const field = event.currentTarget.dataset.field as string;
-    this.setData({ form: { ...this.data.form, [field]: event.detail.value } });
+    this.setData({ [`form.${field}`]: event.detail.value });
   },
   onCategoryTap(event: WechatMiniprogram.TouchEvent) {
     const category = event.currentTarget.dataset.value as PlaceCategory;
-    this.setData({ form: { ...this.data.form, category } });
+    this.setData({ form: Object.assign({}, this.data.form, { category }) });
   },
   onDateChange(event: WechatMiniprogram.PickerChange) {
-    this.setData({ form: { ...this.data.form, visitDate: String(event.detail.value) } });
+    this.setData({ form: Object.assign({}, this.data.form, { visitDate: String(event.detail.value) }) });
   },
   onRatingChange(event: WechatMiniprogram.SliderChange) {
     const rating = Number(event.detail.value);
-    this.setData({ form: { ...this.data.form, rating }, ratingText: formatRating(rating) });
+    this.setData({ form: Object.assign({}, this.data.form, { rating }), ratingText: formatRating(rating) });
   },
   async onUploadPhotos() {
     const remaining = Math.max(0, 9 - this.data.form.photoFileIds.length);
@@ -95,13 +97,14 @@ Page({
     }
     try {
       const fileIds = await chooseAndUploadImages(this.data.form.spaceId, remaining);
-      const photoFileIds = [...this.data.form.photoFileIds, ...fileIds];
+      const photoFileIds = this.data.form.photoFileIds.concat(fileIds);
+      const photoUrls = this.data.form.photoUrls.concat(fileIds);
       this.setData({
-        form: {
-          ...this.data.form,
+        form: Object.assign({}, this.data.form, {
+          photoUrls,
           photoFileIds,
           coverFileId: this.data.form.coverFileId || photoFileIds[0] || ''
-        }
+        })
       });
     } catch (error) {
       showError(error);
@@ -113,15 +116,14 @@ Page({
       events: {
         selectedPoi: (poi) => {
           this.setData({
-            form: {
-              ...this.data.form,
+            form: Object.assign({}, this.data.form, {
               name: this.data.form.name || poi.title,
               category: poi.category || this.data.form.category,
               address: poi.address,
               latitude: poi.latitude,
               longitude: poi.longitude,
               poiId: poi.id
-            }
+            })
           });
         }
       }
@@ -133,12 +135,11 @@ Page({
       events: {
         pickedLocation: (location) => {
           this.setData({
-            form: {
-              ...this.data.form,
+            form: Object.assign({}, this.data.form, {
               address: location.address,
               latitude: location.latitude,
               longitude: location.longitude
-            }
+            })
           });
         }
       }
@@ -154,7 +155,8 @@ Page({
     this.setData({ saving: true });
     try {
       const functionName = form.placeId ? 'updatePlace' : 'createPlace';
-      const result = await callFunction<{ placeId: string }>(functionName, form.placeId ? form : { ...form, placeId: undefined });
+      const payload = form.placeId ? form : Object.assign({}, form, { placeId: undefined });
+      const result = await callFunction<{ placeId: string }>(functionName, payload);
       const placeId = form.placeId || result.placeId;
       wx.redirectTo({ url: `/pages/place-detail/index?id=${placeId}` });
     } catch (error) {

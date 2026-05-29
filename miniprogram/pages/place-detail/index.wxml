@@ -1,5 +1,5 @@
 <view class="detail">
-  <image wx:if="{{place.coverFileId}}" class="hero" src="{{place.coverFileId}}" mode="aspectFill"></image>
+  <image wx:if="{{place.coverUrl || place.coverFileId}}" class="hero" src="{{place.coverUrl || place.coverFileId}}" mode="aspectFill"></image>
   <view wx:else class="hero empty-hero">我们的回忆</view>
 
   <view class="content paper-card">
@@ -19,7 +19,7 @@
         <view class="section-title">我们的照片</view>
         <view class="muted">{{place.photoFileIds.length}} 张</view>
       </view>
-      <photo-grid photos="{{place.photoFileIds}}"></photo-grid>
+      <photo-grid photos="{{place.photoUrls || place.photoFileIds}}"></photo-grid>
     </view>
 
     <view class="section">

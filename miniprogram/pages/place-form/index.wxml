@@ -2,7 +2,7 @@
   <view class="airmail paper-card">
     <view class="photos">
       <view class="upload" bindtap="onUploadPhotos">相机<br />添加照片<br />最多9张</view>
-      <image wx:for="{{form.photoFileIds}}" wx:key="*this" class="thumb" src="{{item}}" mode="aspectFill"></image>
+      <image wx:for="{{form.photoUrls}}" wx:key="*this" class="thumb" src="{{item}}" mode="aspectFill"></image>
     </view>
 
     <view class="field">

@@ -2,7 +2,7 @@
   <view class="note-paper {{form.color}}">
     <view class="tape"></view>
     <textarea class="textarea" maxlength="160" value="{{form.text}}" bindinput="onTextInput" placeholder="写下这次最想记住的话"></textarea>
-    <image wx:if="{{form.photoFileId}}" class="photo" src="{{form.photoFileId}}" mode="aspectFill"></image>
+    <image wx:if="{{form.photoUrl || form.photoFileId}}" class="photo" src="{{form.photoUrl || form.photoFileId}}" mode="aspectFill"></image>
     <button class="secondary-button" bindtap="onUpload">贴一张照片</button>
   </view>
 

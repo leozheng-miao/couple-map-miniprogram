@@ -43,8 +43,7 @@ Page({
         mapKey: TENCENT_MAP_KEY
       });
       this.setData({
-        pois: pois.map((poi) => ({
-          ...poi,
+        pois: pois.map((poi) => Object.assign({}, poi, {
           categoryLabel: categoryLabels[(poi.category || 'other') as PlaceCategory],
           distanceText: poi.distance ? `${Math.round(poi.distance)}m` : ''
         }))

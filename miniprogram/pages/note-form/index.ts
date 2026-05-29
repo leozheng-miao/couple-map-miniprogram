@@ -19,11 +19,12 @@ Page({
       noteId: '',
       text: '',
       color: 'yellow' as NoteColor,
-      photoFileId: ''
+      photoFileId: '',
+      photoUrl: ''
     }
   },
   async onLoad(query: Record<string, string>) {
-    this.setData({ form: { ...this.data.form, placeId: query.placeId || '', noteId: query.noteId || '' } });
+    this.setData({ form: Object.assign({}, this.data.form, { placeId: query.placeId || '', noteId: query.noteId || '' }) });
     await this.loadPlaceAndNote();
   },
   async loadPlaceAndNote() {
@@ -40,7 +41,8 @@ Page({
               noteId: note._id,
               text: note.text,
               color: note.color,
-              photoFileId: note.photoFileId
+              photoFileId: note.photoFileId,
+              photoUrl: note.photoUrl || note.photoFileId
             }
           : this.data.form
       });
@@ -49,17 +51,17 @@ Page({
     }
   },
   onTextInput(event: WechatMiniprogram.Input) {
-    this.setData({ form: { ...this.data.form, text: event.detail.value } });
+    this.setData({ form: Object.assign({}, this.data.form, { text: event.detail.value }) });
   },
   onColorTap(event: WechatMiniprogram.TouchEvent) {
     const color = event.currentTarget.dataset.value as NoteColor;
-    this.setData({ form: { ...this.data.form, color } });
+    this.setData({ form: Object.assign({}, this.data.form, { color }) });
   },
   async onUpload() {
     if (!this.data.place) return;
     try {
       const fileIds = await chooseAndUploadImages(this.data.place.spaceId, 1, 'notes');
-      this.setData({ form: { ...this.data.form, photoFileId: fileIds[0] || '' } });
+      this.setData({ form: Object.assign({}, this.data.form, { photoFileId: fileIds[0] || '', photoUrl: fileIds[0] || '' }) });
     } catch (error) {
       showError(error);
     }

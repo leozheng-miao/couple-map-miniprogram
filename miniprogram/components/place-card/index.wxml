@@ -1,5 +1,5 @@
 <view class="place-card" bindtap="onTap">
-  <image wx:if="{{place.coverFileId}}" class="cover" src="{{place.coverFileId}}" mode="aspectFill"></image>
+  <image wx:if="{{place.coverUrl || place.coverFileId}}" class="cover" src="{{place.coverUrl || place.coverFileId}}" mode="aspectFill"></image>
   <view wx:else class="cover placeholder">{{icon}}</view>
   <view class="body">
     <view class="row">
