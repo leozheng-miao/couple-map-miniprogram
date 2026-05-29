@@ -1,4 +1,4 @@
-export type PlaceCategory = 'restaurant' | 'hotel' | 'scenic' | 'other';
+export type PlaceCategory = 'restaurant' | 'hotel' | 'scenic' | 'entertainment' | 'special' | 'other';
 export type NoteColor = 'yellow' | 'pink' | 'green' | 'blue';
 
 export interface AppUser {

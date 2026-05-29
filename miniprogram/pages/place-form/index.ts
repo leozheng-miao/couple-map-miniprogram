@@ -8,6 +8,8 @@ const categories = [
   { value: 'restaurant', label: '餐厅' },
   { value: 'hotel', label: '酒店' },
   { value: 'scenic', label: '景点' },
+  { value: 'entertainment', label: '娱乐' },
+  { value: 'special', label: '特殊' },
   { value: 'other', label: '其他' }
 ];
 
@@ -109,6 +111,38 @@ Page({
     } catch (error) {
       showError(error);
     }
+  },
+  onSetCover(event: WechatMiniprogram.TouchEvent) {
+    const fileId = event.currentTarget.dataset.fileId as string;
+    if (!fileId || this.data.form.coverFileId === fileId) return;
+    this.setData({ form: Object.assign({}, this.data.form, { coverFileId: fileId }) });
+    wx.showToast({ title: '已设为主图', icon: 'success' });
+  },
+  onDeletePhoto(event: WechatMiniprogram.TouchEvent) {
+    const index = Number(event.currentTarget.dataset.index);
+    const photoFileIds = this.data.form.photoFileIds.slice();
+    const photoUrls = this.data.form.photoUrls.slice();
+
+    if (photoFileIds.length <= 1) {
+      wx.showToast({ title: '至少保留1张照片', icon: 'none' });
+      return;
+    }
+    if (!Number.isInteger(index) || index < 0 || index >= photoFileIds.length) return;
+
+    const [removedFileId] = photoFileIds.splice(index, 1);
+    photoUrls.splice(index, 1);
+
+    const coverFileId = this.data.form.coverFileId === removedFileId || !photoFileIds.includes(this.data.form.coverFileId)
+      ? photoFileIds[0] || ''
+      : this.data.form.coverFileId;
+
+    this.setData({
+      form: Object.assign({}, this.data.form, {
+        photoFileIds,
+        photoUrls,
+        coverFileId
+      })
+    });
   },
   onOpenPoi() {
     wx.navigateTo({

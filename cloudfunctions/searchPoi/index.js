@@ -27,6 +27,8 @@ function requestJson(url) {
 function inferCategory(title) {
   if (/酒店|宾馆|民宿|旅店/.test(title)) return 'hotel';
   if (/景区|公园|博物馆|山|湖|海|寺|园/.test(title)) return 'scenic';
+  if (/影院|电影|剧院|KTV|密室|桌游|游乐|电玩城|酒吧|演出|娱乐/.test(title)) return 'entertainment';
+  if (/纪念|婚礼|生日|节日|周年|求婚|特别|特殊/.test(title)) return 'special';
   if (/饭|餐|咖啡|火锅|烧烤|面|酒馆|茶/.test(title)) return 'restaurant';
   return 'other';
 }

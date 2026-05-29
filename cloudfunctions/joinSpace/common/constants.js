@@ -1,4 +1,4 @@
-const PLACE_CATEGORIES = ['restaurant', 'hotel', 'scenic', 'other'];
+const PLACE_CATEGORIES = ['restaurant', 'hotel', 'scenic', 'entertainment', 'special', 'other'];
 const NOTE_COLORS = ['yellow', 'pink', 'green', 'blue'];
 
 module.exports = {

@@ -4,6 +4,8 @@ const markerColors: Record<PlaceCategory, string> = {
   restaurant: '#E86A3C',
   hotel: '#7058B9',
   scenic: '#4CA762',
+  entertainment: '#2F8DBF',
+  special: '#D65E8A',
   other: '#A77B5B'
 };
 

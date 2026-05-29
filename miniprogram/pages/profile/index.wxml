@@ -1,21 +1,23 @@
 <view class="safe-page">
   <view class="profile paper-card">
-    <image class="avatar" src="{{user.avatarUrl || '/assets/theme/design-theme-reference.png'}}" mode="aspectFill"></image>
+    <image class="avatar" src="{{profileForm.avatarUrl || user.avatarUrl || '/assets/theme/design-theme-reference.png'}}" mode="aspectFill" bindtap="onChooseAvatar"></image>
     <view class="profile-main">
-      <view class="name">{{user.nickName || '小熊和小鹿呀'}}</view>
+      <input class="profile-input name-input" value="{{profileForm.nickName}}" maxlength="24" data-field="nickName" bindinput="onProfileInput" placeholder="我的名字" />
       <view class="meta">甜蜜值 {{placesCount}}</view>
     </view>
+    <view class="avatar-button {{uploadingAvatar ? 'disabled' : ''}}" bindtap="onChooseAvatar">{{uploadingAvatar ? '上传中' : '换头像'}}</view>
   </view>
 
   <view class="space paper-card">
     <view class="section-title">我们的空间</view>
-    <view class="space-name">{{space.name || '还没有空间'}}</view>
+    <input class="space-name-input" value="{{profileForm.spaceName}}" maxlength="24" data-field="spaceName" bindinput="onProfileInput" placeholder="空间名称" />
     <view class="line">成员：{{memberCount}} / 2</view>
-    <view class="line">邀请码：{{space.inviteCode || '-'}}</view>
-    <view class="buttons">
-      <button class="secondary-button" bindtap="onCopyInvite">复制邀请码</button>
-      <button class="secondary-button" bindtap="onRefreshInvite">刷新邀请码</button>
+    <view wx:if="{{canInvite}}" class="line">邀请码：{{space.inviteCode || '-'}}</view>
+    <view wx:if="{{canInvite}}" class="invite-actions">
+      <button class="secondary-button action-button" bindtap="onCopyInvite">复制邀请码</button>
+      <button class="secondary-button action-button" bindtap="onRefreshInvite">刷新邀请码</button>
     </view>
+    <button class="primary-button save-profile" loading="{{savingProfile}}" disabled="{{savingProfile}}" bindtap="onSaveProfile">保存资料</button>
   </view>
 
   <view class="menu paper-card">

@@ -6,6 +6,8 @@ const categories = [
   { value: 'restaurant', label: '餐厅' },
   { value: 'hotel', label: '酒店' },
   { value: 'scenic', label: '景点' },
+  { value: 'entertainment', label: '娱乐' },
+  { value: 'special', label: '特殊' },
   { value: 'other', label: '其他' }
 ];
 

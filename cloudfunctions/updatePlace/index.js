@@ -12,6 +12,14 @@ const {
 
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
 
+function resolveCoverFileId(coverFileId, photoFileIds) {
+  const normalizedCoverFileId = optionalString(coverFileId);
+  if (normalizedCoverFileId && photoFileIds.includes(normalizedCoverFileId)) {
+    return normalizedCoverFileId;
+  }
+  return photoFileIds[0] || '';
+}
+
 exports.main = async (event) => {
   const db = cloud.database();
   const OPENID = getOpenId(event);
@@ -21,6 +29,7 @@ exports.main = async (event) => {
     await requirePlaceAccess(OPENID, placeId);
 
     const photoFileIds = normalizeStringArray(event.photoFileIds);
+    const coverFileId = resolveCoverFileId(event.coverFileId, photoFileIds);
     const data = {
       name: requireString(event.name, '地点名称'),
       category: requireCategory(event.category),
@@ -31,7 +40,7 @@ exports.main = async (event) => {
       visitDate: requireString(event.visitDate, '日期'),
       rating: Math.max(0, Math.min(5, Number(event.rating || 0))),
       content: optionalString(event.content),
-      coverFileId: optionalString(event.coverFileId) || photoFileIds[0] || '',
+      coverFileId,
       photoFileIds,
       updatedAt: new Date()
     };

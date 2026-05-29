@@ -2,7 +2,7 @@ const cloud = require('wx-server-sdk');
 const { getOpenId } = require('./common/context');
 const { ok, fail } = require('./common/response');
 const { requireSpaceMember } = require('./common/auth');
-const { getTempFileUrlMap } = require('./common/media');
+const { getTempFileUrlMap, orderPlacePhotoFileIds } = require('./common/media');
 const { optionalString, requireCategory, requireString } = require('./common/validators');
 
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV });
@@ -23,10 +23,10 @@ exports.main = async (event) => {
     }
 
     const result = await db.collection('places').where(where).orderBy('visitDate', 'desc').get();
-    const fileIds = result.data.flatMap((place) => (Array.isArray(place.photoFileIds) ? place.photoFileIds : []));
+    const fileIds = result.data.flatMap((place) => orderPlacePhotoFileIds(place));
     const urlMap = await getTempFileUrlMap(fileIds);
     const photos = result.data.flatMap((place) => {
-      const ids = Array.isArray(place.photoFileIds) ? place.photoFileIds : [];
+      const ids = orderPlacePhotoFileIds(place);
       return ids.map((fileId) => ({
         fileId,
         url: urlMap[fileId] || fileId,

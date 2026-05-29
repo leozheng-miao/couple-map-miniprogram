@@ -4,6 +4,15 @@ function normalizeFileIds(fileIds) {
   return Array.from(new Set((fileIds || []).filter((id) => typeof id === 'string' && id.trim())));
 }
 
+function orderPlacePhotoFileIds(place) {
+  const photoFileIds = normalizeFileIds(Array.isArray(place.photoFileIds) ? place.photoFileIds : []);
+  const coverFileId = typeof place.coverFileId === 'string' ? place.coverFileId.trim() : '';
+  if (!coverFileId || !photoFileIds.includes(coverFileId)) {
+    return photoFileIds;
+  }
+  return [coverFileId, ...photoFileIds.filter((fileId) => fileId !== coverFileId)];
+}
+
 async function getTempFileUrlMap(fileIds) {
   const normalized = normalizeFileIds(fileIds);
   if (normalized.length === 0) return {};
@@ -18,7 +27,7 @@ async function getTempFileUrlMap(fileIds) {
 }
 
 function withPlaceImageUrls(place, urlMap) {
-  const photoFileIds = Array.isArray(place.photoFileIds) ? place.photoFileIds : [];
+  const photoFileIds = orderPlacePhotoFileIds(place);
   return {
     ...place,
     coverUrl: place.coverFileId ? urlMap[place.coverFileId] || place.coverFileId : '',
@@ -34,6 +43,7 @@ function withNoteImageUrl(note, urlMap) {
 }
 
 module.exports = {
+  orderPlacePhotoFileIds,
   getTempFileUrlMap,
   withPlaceImageUrls,
   withNoteImageUrl
